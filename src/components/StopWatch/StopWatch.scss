@@ -1,0 +1,27 @@
+
+.Stopwatch {
+  border: 1px solid grey;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(54, 241, 83, 0.18);
+
+}
+
+.Stopwatch-display {
+  //padding: 40px 0;
+  height: 40px;
+  width: 100%;
+  font-size: 30px;
+  color: green;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  transition: top .4s;
+  z-index: -99;
+
+}
+
+.Stopwatch-hide {
+  top: 0;
+  transition: top .4s;
+
+}
