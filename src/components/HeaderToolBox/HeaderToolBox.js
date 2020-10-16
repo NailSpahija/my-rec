@@ -2,8 +2,12 @@ import React from "react";
 
 class HeaderToolBox extends React.Component {
 
+    REC_STATUS = 'REC';
+    PAUSED_STATUS = 'PAUSED';
+    STOPPED_STATUS = 'STOPPED';
+
     state = {
-        is_recording: false,
+        status: this.STOPPED_STATUS,
     };
 
     constructor(props) {
@@ -11,13 +15,13 @@ class HeaderToolBox extends React.Component {
     }
 
     onStart = () => {
-        this.setState({...this.state, is_recording: true});
+        this.setState({...this.state, status: this.REC_STATUS});
         const curr_stopwatch = this.props.stopwatchRef.current;
         if (curr_stopwatch) curr_stopwatch.startTimer();
     };
 
     onStop = () => {
-        this.setState({...this.state, is_recording: false});
+        this.setState({...this.state, status: this.STOPPED_STATUS});
         const curr_stopwatch = this.props.stopwatchRef.current;
         if (curr_stopwatch) curr_stopwatch.stopTimer();
     };
@@ -26,23 +30,42 @@ class HeaderToolBox extends React.Component {
         const curr_stopwatch = this.props.stopwatchRef.current;
         if (curr_stopwatch) {
             curr_stopwatch.pauseTimer();
-            this.setState({...this.state, is_recording: false});
+            this.setState({...this.state, status: this.PAUSED_STATUS});
         }
     };
 
 
     render() {
 
+        let header_btn = (
+            <button onClick={this.onStart} className="button-success">Rec</button>
+        );
 
-        return (<div className="App-header-buttons">
-            <button onClick={this.onStop} className="button-error" hidden={!this.state.is_recording}>Stop
-            </button>
-            <button onClick={this.onPause} className="button-warning"
-                    hidden={!this.state.is_recording}>Pause
-            </button>
-            <button onClick={this.onStart} className="button-success" hidden={this.state.is_recording}>Rec
-            </button>
-        </div>);
+        if (this.state.status === this.PAUSED_STATUS) {
+            header_btn = (
+                <>
+                    <button onClick={this.onStop} className="button-error">Stop
+                    </button>
+                    <button onClick={this.onStart} className="button-success">Rec
+                    </button>
+                </>
+            );
+        }
+
+        if (this.state.status === this.REC_STATUS) {
+            header_btn = (
+                <>
+                    <button onClick={this.onStop} className="button-error">Stop</button>
+                    <button onClick={this.onPause} className="button-warning">Pause</button>
+                </>
+            );
+        }
+
+        return (
+            <div className="App-header-buttons">
+                {header_btn}
+            </div>
+        );
 
     }
 

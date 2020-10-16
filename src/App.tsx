@@ -20,9 +20,10 @@ class App extends React.Component {
                     <HeaderToolBox stopwatchRef={this.stopWatch}/>
 
                 </header>
-                <nav className="App-nav-bar">
 
+                <nav className="App-nav-bar">
                 </nav>
+
                 <body className="App-body">
                 <Stopwatch ref={this.stopWatch} />
 
