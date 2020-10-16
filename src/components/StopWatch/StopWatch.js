@@ -82,7 +82,7 @@ class Stopwatch extends Component {
         return (
             <div className="Stopwatch-scene">
                 <div className={flp}>
-                    <div className="Stopwatch-front"/>
+                    <div className="Stopwatch-front">{this.props.appInfo}</div>
                     <div className="Stopwatch-back">
                         {time_f[0]} : {time_f[1]} : {time_f[2]} : {time_f[3]}
                     </div>

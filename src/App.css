@@ -1,13 +1,11 @@
 
-
 .App {
     text-align: center;
-
 }
 
 .App-header {
     background-color: #282c34;
-    height: 40px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,6 +14,23 @@
     color: white;
 
 }
+
+.App-header-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    line-height: 40px;
+    border-radius: 30px;
+
+}
+
+.App-icon {
+    height: 30px;
+    align-items: center;
+    margin-top: 5px;
+
+}
+
 
 .App-nav-bar {
     display: none;
@@ -33,6 +48,7 @@
     width: 100%;
     justify-content: flex-start;
     padding: 3px 4px;
+    height: 37px;
 
 }
 

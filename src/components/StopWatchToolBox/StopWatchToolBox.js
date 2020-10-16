@@ -1,6 +1,6 @@
 import React from "react";
 
-class HeaderToolBox extends React.Component {
+class StopWatchToolBox extends React.Component {
 
     REC_STATUS = 'REC';
     PAUSED_STATUS = 'PAUSED';
@@ -65,4 +65,4 @@ class HeaderToolBox extends React.Component {
 
 }
 
-export default HeaderToolBox;
+export default StopWatchToolBox;
