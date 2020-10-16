@@ -76,12 +76,17 @@ class Stopwatch extends Component {
     render() {
 
         let time_f = this.get_time();
-        let cl_nm = 'Stopwatch-display ' + (this.isTimerStopped() ? 'Stopwatch-hide' : '');
-
+        // let cl_nm = 'Stopwatch-display ' + (this.isTimerStopped() ? 'Stopwatch-hide' : '');
+        let flp = 'Stopwatch ' + (this.isTimerStopped() ? 'is-flipped' : '');
+        // Stopwatch
         return (
-            <div className="Stopwatch">
-                <div className={cl_nm}>
-                    {time_f[0]} : {time_f[1]} : {time_f[2]} : {time_f[3]}
+            <div className="Stopwatch-scene">
+                <div className={flp}>
+                    <div className="Stopwatch-front"/>
+                    <div className="Stopwatch-back">
+                        {time_f[0]} : {time_f[1]} : {time_f[2]} : {time_f[3]}
+                    </div>
+                    {/*<div className={cl_nm}></div>*/}
                 </div>
             </div>
         );

@@ -1,27 +1,69 @@
+//.Stopwatch {
+//  border: 1px solid grey;
+//  border-radius: 4px;
+//  box-shadow: 0 3px 6px rgba(54, 241, 83, 0.18);
+//
+//}
+//
+//.Stopwatch-display {
+//  //padding: 40px 0;
+//  height: 40px;
+//  width: 100%;
+//  font-size: 30px;
+//  color: green;
+//  position: absolute;
+//  top: 40px;
+//  left: 0;
+//  transition: top .4s;
+//  z-index: -99;
+//
+//}
+//
+//.Stopwatch-hide {
+//  top: 0;
+//  transition: top .4s;
+//
+//}
+
+.Stopwatch-scene{
+  width: 300px;
+  height: 40px;
+  perspective: 300px;
+
+}
 
 .Stopwatch {
-  border: 1px solid grey;
-  border-radius: 4px;
-  box-shadow: 0 3px 6px rgba(54, 241, 83, 0.18);
-
-}
-
-.Stopwatch-display {
-  //padding: 40px 0;
-  height: 40px;
   width: 100%;
-  font-size: 30px;
-  color: green;
+  height: 100%;
+  transition: transform .5s;
+  transform-style: preserve-3d;
+  position: relative;
+  perspective: 600px;
+
+}
+
+.Stopwatch.is-flipped {
+  transform: rotateX(180deg);
+
+}
+
+.Stopwatch-front {
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top: 40px;
-  left: 0;
-  transition: top .4s;
-  z-index: -99;
+  transform: rotateX(180deg);
+  background-color: #282c34;
 
 }
 
-.Stopwatch-hide {
-  top: 0;
-  transition: top .4s;
-
+.Stopwatch-back {
+  background-color: rgba(40, 44, 52, 0.77);
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
+  color: white;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
+

@@ -42,23 +42,17 @@ class HeaderToolBox extends React.Component {
         );
 
         if (this.state.status === this.PAUSED_STATUS) {
-            header_btn = (
-                <>
-                    <button onClick={this.onStop} className="button-error">Stop
-                    </button>
-                    <button onClick={this.onStart} className="button-success">Rec
-                    </button>
-                </>
-            );
+            header_btn = (<>
+                <button onClick={this.onStop} className="button-error">Stop</button>
+                <button onClick={this.onStart} className="button-success">Rec</button>
+            </>);
         }
 
         if (this.state.status === this.REC_STATUS) {
-            header_btn = (
-                <>
-                    <button onClick={this.onStop} className="button-error">Stop</button>
-                    <button onClick={this.onPause} className="button-warning">Pause</button>
-                </>
-            );
+            header_btn = (<>
+                <button onClick={this.onStop} className="button-error">Stop</button>
+                <button onClick={this.onPause} className="button-warning">Pause</button>
+            </>);
         }
 
         return (
