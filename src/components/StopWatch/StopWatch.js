@@ -4,25 +4,40 @@ import "./StopWatch.scss";
 
 class Stopwatch extends Component {
 
+    START_STATUS = 'RUNNING';
+    STOP_STATUS = 'STOP';
+    PAUSE_STATUS = 'PAUSE';
+
     state = {
-        timerOn: false,
+        status: this.STOP_STATUS,
         timerStart: 0,
         timerTime: 0
     };
 
+    isTimerStopped = () => {
+        return this.state.status === this.STOP_STATUS;
+    };
+
+    isTimerPaused = () => {
+        return this.state.status === this.PAUSE_STATUS;
+    };
+
+    isTimerRunning = () => {
+        return this.state.status === this.START_STATUS;
+    };
 
     pauseTimer = () => {
-        if (!this.state.timerOn) return;
-
-
+        if (this.isTimerStopped()) return;
+        clearInterval(this.timer);
+        this.setState({...this.state, status: this.PAUSE_STATUS});
     };
 
     startTimer = () => {
-        if (this.state.timerOn) return;
+        if (this.isTimerRunning()) return;
 
         this.setState({
             ...this.state,
-            timerOn: true,
+            status: this.START_STATUS,
             timerTime: this.state.timerTime,
             timerStart: Date.now() - this.state.timerTime
         });
@@ -35,13 +50,15 @@ class Stopwatch extends Component {
     };
 
     stopTimer = () => {
-        this.setState({...this.state, timerOn: false});
         clearInterval(this.timer);
+        this.setState({...this.state, status: this.STOP_STATUS});
+        this.resetTimer()
     };
 
     resetTimer = () => {
         this.setState({
             ...this.state,
+            status: this.STOP_STATUS,
             timerStart: 0,
             timerTime: 0
         });
@@ -58,12 +75,8 @@ class Stopwatch extends Component {
 
     render() {
 
-        if (this.props.status) {
-            this.startTimer()
-        }
-
         let time_f = this.get_time();
-        let cl_nm = 'Stopwatch-display ' + (!this.state.timerOn ? 'Stopwatch-hide' : '');
+        let cl_nm = 'Stopwatch-display ' + (this.isTimerStopped() ? 'Stopwatch-hide' : '');
 
         return (
             <div className="Stopwatch">
