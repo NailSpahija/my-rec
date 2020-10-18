@@ -35,11 +35,9 @@ class App extends React.Component {
 
                 </header>
 
-                <nav className="App-nav-bar">
-                </nav>
-
                 <body className="App-body">
-                <VideoLive/>
+                    <VideoLive/>
+                    
                 </body>
             </div>
         );

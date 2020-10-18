@@ -38,8 +38,10 @@
 }
 
 .App-body {
-
-
+    background-color:  #4A6572;
+    /* #F9AA33; */
+    /* min-width: 100%; */
+    
 }
 
 .App-header-buttons {
