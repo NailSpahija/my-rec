@@ -10,10 +10,6 @@ class StopWatchToolBox extends React.Component {
         status: this.STOPPED_STATUS,
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     onStart = () => {
         this.setState({...this.state, status: this.REC_STATUS});
         const curr_stopwatch = this.props.stopwatchRef.current;

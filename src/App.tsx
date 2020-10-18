@@ -21,7 +21,7 @@ class App extends React.Component {
 
         let app_info = (
             <div className="App-header-logo">
-                <img className="App-icon" src={logo} alt="MyRec Icon"/>
+                {/* <img className="App-icon" src={logo} alt="MyRec Icon"/> */}
                 <span>MyRec</span>
             </div>
         );

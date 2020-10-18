@@ -26,10 +26,12 @@
 //}
 
 .Stopwatch-scene {
+  margin-left: 3px;
   width: 300px;
   min-width: 200px;
   height: 40px;
   perspective: 300px;
+  position: relative;
 
 }
 
@@ -38,12 +40,13 @@
   height: 100%;
   transition: transform .5s;
   transform-style: preserve-3d;
-  position: relative;
   perspective: 600px;
-  border: 2px solid darkolivegreen;
+  border-right: 2px solid #F9AA33;
+  border-left: 2px solid #F9AA33;
+
   margin:0;
   padding: 0;
-
+  
 }
 
 .Stopwatch.is-flipped {
@@ -52,17 +55,18 @@
 }
 
 .Stopwatch-front {
+  top: 0;
   height: 100%;
   width: 100%;
   position: absolute;
   transform: rotateX(180deg);
-  background-color: #282c34;
+  background-color: #344955;
   line-height: 40px;
   color: yellowgreen;
 }
 
 .Stopwatch-back {
-  background-color: rgba(40, 44, 52, 0.91);
+  background-color: #344955;
   height: 100%;
   width: 100%;
   line-height: 40px;
