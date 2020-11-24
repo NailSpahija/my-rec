@@ -13,7 +13,6 @@ if (!fs.existsSync(dir))
     fs.mkdirSync(dir);
     // shell.mkdir('-p', dir);
 
-
 class ScreenRecord {
 
     constructor(frames_ps=20) {

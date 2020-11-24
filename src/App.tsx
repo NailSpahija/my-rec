@@ -1,5 +1,5 @@
 import React, {RefObject} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import Stopwatch from "./components/StopWatch/StopWatch";

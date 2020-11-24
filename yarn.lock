@@ -10099,6 +10099,11 @@ realpath-native@^1.1.0:
   dependencies:
     util.promisify "^1.0.0"
 
+record-screen@^3.18.0:
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/record-screen/-/record-screen-3.18.0.tgz#b7cb39105c9b3cdf155060bd45d75c8d38e3dbff"
+  integrity sha512-bY1QBIIyzVRQmkdPnDyd8hObsW3waX+BQWga8sMbD8Aq34574XcVobmFVWM8VE6eXq/fQYCVNmCotU/ySic62w==
+
 recursive-readdir@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
