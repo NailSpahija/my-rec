@@ -110,34 +110,35 @@ function buildFFMPEGArgs(fileName, options = {}) {
     }
     if (options.resolution) {
         // Must match X11 display resolution when using x11grab:
-        if (options.inputFormat === "x11grab")
+        if (options.inputFormat === "x11grab") {
             args.push('-video_size', options.resolution)
+        }
+        if (options.fps) {
+            // Frames per second to record from input:
+            args.push('-r', String(options.fps))
+        }
+        if (options.inputFormat) {
+            args.push('-f', options.inputFormat)
+        }
+        args.push(
+            '-i',
+            // Construct the input URL:
+            options.inputFormat === 'x11grab'
+                ? `${options.hostname || ''}:${options.display}`
+                : buildURL(options)
+        )
+        if (options.videoFilter) {
+            args.push('-vf', options.videoFilter);
+        }
+        if (options.videoCodec) {
+            args.push('-vcodec', options.videoCodec);
+        }
+        if (options.pixelFormat) {
+            args.push('-pix_fmt', options.pixelFormat);
+        }
+        args.push(fileName);
+        return args
     }
-    if (options.fps) {
-        // Frames per second to record from input:
-        args.push('-r', String(options.fps))
-    }
-    if (options.inputFormat) {
-        args.push('-f', options.inputFormat)
-    }
-    args.push(
-        '-i',
-        // Construct the input URL:
-        options.inputFormat === 'x11grab'
-            ? `${options.hostname || ''}:${options.display}`
-            : buildURL(options)
-    )
-    if (options.videoFilter) {
-        args.push('-vf', options.videoFilter);
-    }
-    if (options.videoCodec) {
-        args.push('-vcodec', options.videoCodec);
-    }
-    if (options.pixelFormat) {
-        args.push('-pix_fmt', options.pixelFormat);
-    }
-    args.push(fileName);
-    return args
 }
 
 
@@ -146,6 +147,12 @@ async function getOsType() {
         return val['platform']
     }).catch(e => e.message);
 }
+
+
+async function getScreenRes() {
+    si.graphics().then(val => [val['currentResX'], val['currentResY']]);
+}
+
 
 /**
  * Starts a screen recording via ffmpeg.
@@ -165,10 +172,14 @@ async function recordScreen(fileName, options) {
         inputFormat = "avfoundation";
     }
 
+    let scRes = await getScreenRes();
+    const resolution = `${scRes[0]}x${scRes[1]}`;
+
     const args = buildFFMPEGArgs(
         fileName,
         Object.assign(
             {
+                screenResolution: resolution,
                 inputFormat: inputFormat,
                 fps: 15,
                 pixelFormat: 'yuv420p', // QuickTime compatibility
@@ -178,7 +189,7 @@ async function recordScreen(fileName, options) {
             options
         )
     )
-    let recProcess
+    let recProcess;
 
     /**
      * Executes the recording process.
