@@ -7,7 +7,16 @@ let mainWindow;
 
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({width: 700, height: 400});
+    mainWindow = new BrowserWindow({
+        height: 403,
+        maxHeight: 403,
+        minHeight: 403,
+        width: 700,
+        maxWidth: 700,
+        minWidth: 700,
+        maximizable: false,
+        minimizable: false
+    });
     mainWindow.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
     mainWindow.on("closed", () => (mainWindow = null));
 };
