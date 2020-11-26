@@ -7,13 +7,17 @@ import StopWatchToolBox from "./components/StopWatchToolBox/StopWatchToolBox";
 import VideoLive from "./components/VideoLive/VideoLive";
 import RecordingToolBox from "./components/RecordingToolBox/RecordingToolBox";
 
+import ScreenRecord from "./tools/record.class";
+
 
 class App extends React.Component {
     stopWatch: RefObject<Stopwatch>;
+    recorder: RefObject<ScreenRecord>;
 
     constructor(props: Object) {
         super(props);
         this.stopWatch = React.createRef();
+        this.recorder = new ScreenRecord();
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -31,13 +35,13 @@ class App extends React.Component {
                 <header className="App-header">
                     <Stopwatch ref={this.stopWatch} appInfo={app_info}/>
                     <StopWatchToolBox stopwatchRef={this.stopWatch}/>
-                    <RecordingToolBox />
+                    <RecordingToolBox/>
 
                 </header>
 
                 <body className="App-body">
-                    <VideoLive/>
-                    
+                <VideoLive/>
+
                 </body>
             </div>
         );
