@@ -1,8 +1,12 @@
+import {remote} from 'electron';
+
 const path = require('path');
 const {fs} = require('fs');
 const recordScreen = require('./FFmpeg.js');
 // const recordScreen = require('record-screen');
-//
+
+const showMessageBox = remote.dialog.showMessageBox;
+
 // const {remote} = require('electron');
 // const {screen} = remote;
 
@@ -61,13 +65,14 @@ class ScreenRecord {
         this.recording.stop();
     }
 
-    showNotification(title, body) {
+    showNotification(title, body, type) {
         const notification = {
+            type: 'info',
             title: title,
             body: body
         };
 
-        const myNotification = new window.Notification(notification.title, notification);
+        showMessageBox(notification);
     }
 
 }
