@@ -1,18 +1,17 @@
 const path = require('path');
-var fs = require('fs');
+const {fs} = require('fs');
 const recordScreen = require('./FFmpeg.js');
 // const recordScreen = require('record-screen');
+//
+// const {remote} = require('electron');
+// const {screen} = remote;
 
-const {remote} = require('electron');
-const {screen} = remote;
 
-
-
-const {width, height} = screen.getPrimaryDisplay().size;
+// const {width, height} = screen.getPrimaryDisplay().size;
 const dir = path.join(require('os').homedir(), 'Documents', 'Myrec-videos');
 
-if (!fs.existsSync(dir))
-    fs.mkdirSync(dir);
+// if (!fs.existsSync(dir))
+fs.mkdirSync(dir);
 
 // shell.mkdir('-p', dir);
 
@@ -30,10 +29,10 @@ class ScreenRecord {
     startRecording() {
 
         let fpath = this.generateFilename();
-        let resol = this.resolution == null ? `${width}x${height}` : this.resolution;
+        // let resol = this.resolution == null ? `${width}x${height}` : this.resolution;
 
         this.recording = recordScreen(fpath, {
-            resolution: resol, // Display resolution,t
+            // resolution: resol, // Display resolution,t
             fps: this.frames_ps,
 
             // fps: 60,

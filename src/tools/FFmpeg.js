@@ -9,7 +9,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-'use strict'
+'use strict';
 
 /**
  * @typedef {object} Result
@@ -45,8 +45,8 @@
 
 const fs = require('fs');
 const util = require('util');
-const {execFile} = require('child_process');
-const execFilePromise = util.promisify(execFile);
+const {execFile} = require('promisify-child-process');
+// const execFilePromise = util.promisify(execFile);
 const si = require('systeminformation');
 
 /**
@@ -239,7 +239,7 @@ async function recordScreen(fileName, options) {
             'rotate=' + options.rotate,
             tmpFileName
         ];
-        return execFilePromise('ffmpeg', args).then(function () {
+        return execFile('ffmpeg', args).then(function () {
             fs.unlinkSync(fileName);
             fs.renameSync(tmpFileName, fileName);
             return result;

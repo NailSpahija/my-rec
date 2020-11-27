@@ -7,12 +7,12 @@ import StopWatchToolBox from "./components/StopWatchToolBox/StopWatchToolBox";
 import VideoLive from "./components/VideoLive/VideoLive";
 import RecordingToolBox from "./components/RecordingToolBox/RecordingToolBox";
 
-import ScreenRecord from "./tools/record.class";
+const ScreenRecord = require('./tools/record.class');
 
 
 class App extends React.Component {
     stopWatch: RefObject<Stopwatch>;
-    recorder: RefObject<ScreenRecord>;
+    recorder: RefObject<Object>;
 
     constructor(props: Object) {
         super(props);
