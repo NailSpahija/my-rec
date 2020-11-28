@@ -14,12 +14,14 @@ class StopWatchToolBox extends React.Component {
         this.setState({...this.state, status: this.REC_STATUS});
         const curr_stopwatch = this.props.stopwatchRef.current;
         if (curr_stopwatch) curr_stopwatch.startTimer();
+        this.props.onStart();
     };
 
     onStop = () => {
         this.setState({...this.state, status: this.STOPPED_STATUS});
         const curr_stopwatch = this.props.stopwatchRef.current;
         if (curr_stopwatch) curr_stopwatch.stopTimer();
+        this.props.onStop();
     };
 
     onPause = () => {
@@ -27,6 +29,7 @@ class StopWatchToolBox extends React.Component {
         if (curr_stopwatch) {
             curr_stopwatch.pauseTimer();
             this.setState({...this.state, status: this.PAUSED_STATUS});
+            this.props.onPause();
         }
     };
 

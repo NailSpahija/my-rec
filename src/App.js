@@ -1,7 +1,6 @@
-import React, {RefObject} from 'react';
+import React, {Ref, RefObject} from 'react';
 // import logo from './logo.svg';
 import './App.css';
-
 import Stopwatch from "./components/StopWatch/StopWatch";
 import StopWatchToolBox from "./components/StopWatchToolBox/StopWatchToolBox";
 import VideoLive from "./components/VideoLive/VideoLive";
@@ -11,16 +10,28 @@ const ScreenRecord = require('./tools/record.class');
 
 
 class App extends React.Component {
-    stopWatch: RefObject<Stopwatch>;
-    recorder: RefObject<Object>;
+    // stopWatch: RefObject<Stopwatch>;
+    // recorder: RefObject<Object>;
 
-    constructor(props: Object) {
+    constructor(props) {
         super(props);
         this.stopWatch = React.createRef();
         this.recorder = new ScreenRecord();
     }
 
-    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+    onStart() {
+        this.recorder.startRecording();
+    }
+
+    onPause() {
+
+    }
+
+    onStop() {
+        this.recorder.stopRecording();
+    }
+
+    render() {
 
 
         let app_info = (
@@ -34,7 +45,11 @@ class App extends React.Component {
             <div className="App">
                 <header className="App-header">
                     <Stopwatch ref={this.stopWatch} appInfo={app_info}/>
-                    <StopWatchToolBox stopwatchRef={this.stopWatch}/>
+                    <StopWatchToolBox
+                        onStart={this.onStart}
+                        onStop={this.onStop}
+                        onPause={this.onPause}
+                        stopwatchRef={this.stopWatch}/>
                     <RecordingToolBox/>
 
                 </header>

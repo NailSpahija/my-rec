@@ -1,29 +1,26 @@
-import {remote} from 'electron';
+// import {remote} from 'electron';
+// import fs from 'fs';
 
 const path = require('path');
-const {fs} = require('fs');
+const fs = require('fs');
 const recordScreen = require('./FFmpeg.js');
 // const recordScreen = require('record-screen');
 
-const showMessageBox = remote.dialog.showMessageBox;
-
+// const showMessageBox = remote.dialog.showMessageBox;
 // const {remote} = require('electron');
 // const {screen} = remote;
-
-
-// const {width, height} = screen.getPrimaryDisplay().size;
-const dir = path.join(require('os').homedir(), 'Documents', 'Myrec-videos');
-
-// if (!fs.existsSync(dir))
-fs.mkdirSync(dir);
-
-// shell.mkdir('-p', dir);
 
 class ScreenRecord {
 
     constructor(frames_ps = 20) {
         this.frames_ps = frames_ps;
         this.resolution = null;
+        this.dir = path.join(require('os').homedir(), 'Documents', 'Myrec-videos');
+    }
+
+    checkFolderExisting() {
+        if (!fs.existsSync(this.dir))
+            fs.mkdirSync(this.dir);
     }
 
     setResolution(resolution) {
@@ -58,7 +55,7 @@ class ScreenRecord {
         datetime_now = datetime_now.replace('Z', '');
 
         let filename = `vid-${datetime_now}.mp4`;
-        return dir + '/' + filename;
+        return this.dir + '/' + filename;
     }
 
     stopRecording() {
@@ -72,7 +69,7 @@ class ScreenRecord {
             body: body
         };
 
-        showMessageBox(notification);
+        // showMessageBox(notification);
     }
 
 }
