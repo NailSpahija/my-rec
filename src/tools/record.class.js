@@ -1,19 +1,19 @@
 // import {remote} from 'electron';
 // import fs from 'fs';
 
-const path = require('path');
-const fs = require('fs');
-const recordScreen = require('./FFmpeg.js');
+import path from 'path';
+import fs from 'fs';
+import recordScreen from './FFmpeg.js';
 // const recordScreen = require('record-screen');
 
 // const showMessageBox = remote.dialog.showMessageBox;
 // const {remote} = require('electron');
 // const {screen} = remote;
 
-class ScreenRecord {
+export class ScreenRecord {
 
-    constructor(frames_ps = 20) {
-        this.frames_ps = frames_ps;
+    constructor() {
+        this.frames_ps = 20;
         this.resolution = null;
         this.dir = path.join(require('os').homedir(), 'Documents', 'Myrec-videos');
     }
@@ -74,4 +74,4 @@ class ScreenRecord {
 
 }
 
-module.exports = ScreenRecord;
+// module.exports = ScreenRecord;

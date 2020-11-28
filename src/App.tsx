@@ -1,25 +1,26 @@
-import React, {Ref, RefObject} from 'react';
+import React, {RefObject} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Stopwatch from "./components/StopWatch/StopWatch";
 import StopWatchToolBox from "./components/StopWatchToolBox/StopWatchToolBox";
 import VideoLive from "./components/VideoLive/VideoLive";
 import RecordingToolBox from "./components/RecordingToolBox/RecordingToolBox";
-
-const ScreenRecord = require('./tools/record.class');
+import {ScreenRecord} from './tools/record.class';
 
 
 class App extends React.Component {
-    // stopWatch: RefObject<Stopwatch>;
-    // recorder: RefObject<Object>;
 
-    constructor(props) {
+    stopWatch: RefObject<Stopwatch>;
+    recorder: ScreenRecord;
+
+    constructor(props: Object) {
         super(props);
         this.stopWatch = React.createRef();
         this.recorder = new ScreenRecord();
     }
 
     onStart() {
+        console.log(this.recorder);
         this.recorder.startRecording();
     }
 
@@ -31,7 +32,7 @@ class App extends React.Component {
         this.recorder.stopRecording();
     }
 
-    render() {
+    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
 
         let app_info = (
